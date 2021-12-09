@@ -107,11 +107,16 @@
 			<version>3.8.2</version>
 		</dependency>
 
-		<!--统一响应-->
 		<dependency>
-			<groupId>com.garden</groupId>
-			<artifactId>common_utils</artifactId>
-			<version>0.0.1-SNAPSHOT</version>
+			<groupId>es.nitaur.markdown</groupId>
+			<artifactId>txtmark</artifactId>
+			<version>0.16</version>
+		</dependency>
+
+		<dependency>
+			<groupId>com.atlassian.commonmark</groupId>
+			<artifactId>commonmark</artifactId>
+			<version>0.10.0</version>
 		</dependency>
 	</dependencies>
 

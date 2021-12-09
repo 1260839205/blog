@@ -4,10 +4,8 @@ import com.aguo.blog.response.R;
 import com.aguo.blog.response.annotation.BaseResponse;
 import com.aguo.blog.response.code.RCode;
 import com.aguo.blog.user.domainmodel.UserCmd;
-import com.aguo.blog.user.entity.User;
 import com.aguo.blog.user.service.IUserService;
 import com.aguo.blog.user.vo.UserVo;
-import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import lombok.extern.slf4j.Slf4j;
@@ -49,7 +47,6 @@ public class UserController {
     @GetMapping("/test")
     @ApiOperation(value = "测试")
     public R  test() {
-        R r = new R<>(RCode.SUCCESS.getCode(), RCode.SUCCESS.getMsg(), "成功");
-        return  r;
+        return new R<>(RCode.SUCCESS.getCode(), RCode.SUCCESS.getMsg(), "成功");
     }
 }

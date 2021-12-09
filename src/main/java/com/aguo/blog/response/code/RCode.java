@@ -24,16 +24,24 @@ public enum RCode {
     /**
      * 账号或密码错误
      */
-    LOGIN_ERROR(10002,"登录失败，账号或密码错误");
+    LOGIN_ERROR(10002,"登录失败，账号或密码错误"),
+    /**
+     * 文章不完整，请补充完整
+     */
+    ARTICLE_NOT_ERROR(20001,"文章不完整,请补充完整"),
+    /**
+     * 文章查询错误，未查到此文章
+     */
+    ARTICLE_DETAILS_ERROR(20002,"文章查询错误，未查到此文章");
 
     /**
      * 状态码
      */
-    private int code;
+    private final int code;
     /**
      * 返回信息
      */
-    private String msg;
+    private final String msg;
 
     RCode(int code, String msg) {
         this.code = code;

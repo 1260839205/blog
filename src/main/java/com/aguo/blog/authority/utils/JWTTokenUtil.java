@@ -2,7 +2,6 @@ package com.aguo.blog.authority.utils;
 
 import com.auth0.jwt.JWT;
 import com.auth0.jwt.algorithms.Algorithm;
-import com.auth0.jwt.interfaces.DecodedJWT;
 import com.auth0.jwt.interfaces.JWTVerifier;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
@@ -25,9 +24,9 @@ public class JWTTokenUtil {
     private static final String TOKEN_SECRET = "CGfasfhuaUUHufguGuwu2021AGUO";
 
     public static String token (String username,String password){
-        SimpleDateFormat formatter = null;
-        Date date = null;
-        String token = "";
+        SimpleDateFormat formatter;
+        Date date ;
+        String token;
         try {
             formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
             //过期时间
@@ -53,15 +52,15 @@ public class JWTTokenUtil {
         return token;
     }
 
+    /**
+     * @desc   验证token，通过返回true
+     * @params [token]需要校验的串
+     **/
     public static boolean verify(String token){
-        /**
-         * @desc   验证token，通过返回true
-         * @params [token]需要校验的串
-         **/
         try {
             Algorithm algorithm = Algorithm.HMAC256(TOKEN_SECRET);
             JWTVerifier verifier = JWT.require(algorithm).build();
-            DecodedJWT jwt = verifier.verify(token);
+            verifier.verify(token);
             return true;
         }catch (Exception e){
             e.printStackTrace();

@@ -5,14 +5,12 @@ import com.aguo.blog.article.mapper.ArticleMapper;
 import com.aguo.blog.user.entity.User;
 import com.aguo.blog.user.mapper.UserMapper;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
-import com.baomidou.mybatisplus.extension.conditions.query.QueryChainWrapper;
+import com.github.rjeschke.txtmark.Processor;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 import javax.annotation.Resource;
-import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;
-import java.util.Date;
 
 @SpringBootTest
 class BlogApplicationTests {
@@ -39,6 +37,16 @@ class BlogApplicationTests {
 		QueryWrapper<User> userQueryWrapper = new QueryWrapper<>();
 		userQueryWrapper.eq("id",1);
 		System.out.println(userMapper.selectOne(userQueryWrapper));
+	}
+
+
+	@Test
+	void testText(){
+		QueryWrapper<Article> queryWrapper = new QueryWrapper<>();
+		queryWrapper.eq("b_id","c5772e56c6d0908799de550e6aab75e0");
+		Article article = mapper.selectOne(queryWrapper);
+		String process = Processor.process(article.getBContent());
+		System.out.println(process);
 	}
 
 }

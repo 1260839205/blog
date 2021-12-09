@@ -1,17 +1,16 @@
 package com.aguo.blog.article.controller;
 
 
+import com.aguo.blog.article.domainmodel.ArticleCmd;
+import com.aguo.blog.article.domainmodel.ArticleDetailsCmd;
 import com.aguo.blog.article.service.IArticleService;
 import com.aguo.blog.article.vo.ArticleVo;
 import com.aguo.blog.response.annotation.BaseResponse;
-import com.aguo.blog.user.entity.User;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.validation.annotation.Validated;
+import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
 import java.util.List;
@@ -36,7 +35,21 @@ public class ArticleController {
 
     @GetMapping
     @ApiOperation(value = "查询所有文章")
-    public List<ArticleVo> getArticle(){
+    public List<ArticleVo> getArticles(){
         return service.getArticle();
     }
+
+    @PutMapping
+    @ApiOperation(value = "保存一篇文章")
+    public Boolean saveArticle(@RequestBody @Validated ArticleCmd cmd){
+        return service.saveArticle(cmd);
+    }
+
+    @GetMapping("/{id}")
+    @ApiOperation(value = "文章详情")
+    public ArticleVo getArticle(@PathVariable(value = "id")String id, ArticleDetailsCmd cmd){
+        cmd.setId(id);
+        return service.findArticle(cmd);
+    }
+
 }

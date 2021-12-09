@@ -2,7 +2,6 @@ package com.aguo.blog.response;
 
 import com.aguo.blog.response.annotation.BaseResponse;
 import com.aguo.blog.response.code.RCode;
-import com.alibaba.fastjson.JSON;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.core.MethodParameter;
 import org.springframework.http.MediaType;
@@ -33,8 +32,7 @@ public class ResponseResultHandlerAdvice implements ResponseBodyAdvice {
                 return body;
             }else{
                 // 只有正常返回的结果才会进入这个判断流程，所以返回正常成功的状态码
-                R responseResult =new R(RCode.SUCCESS.getCode(),RCode.SUCCESS.getMsg(),body);
-                return responseResult;
+                return new R<>(RCode.SUCCESS.getCode(),RCode.SUCCESS.getMsg(),body);
             }
         }
         // 非JSON格式body直接返回即可

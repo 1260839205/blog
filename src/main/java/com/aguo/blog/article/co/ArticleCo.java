@@ -1,7 +1,5 @@
 package com.aguo.blog.article.co;
 
-import com.baomidou.mybatisplus.annotation.IdType;
-import com.baomidou.mybatisplus.annotation.TableId;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
 
@@ -15,9 +13,6 @@ import java.time.LocalDateTime;
 @Data
 public class ArticleCo implements Serializable {
     private static final long serialVersionUID = -7894486655469590761L;
-
-    @ApiModelProperty(value = "主键")
-    private String bId;
 
     @ApiModelProperty(value = "文章名称")
     private String bName;
@@ -36,4 +31,7 @@ public class ArticleCo implements Serializable {
 
     @ApiModelProperty(value = "文章类别的标签")
     private String bTag;
+
+    @ApiModelProperty(value = "文章内容")
+    private String bContent;
 }
