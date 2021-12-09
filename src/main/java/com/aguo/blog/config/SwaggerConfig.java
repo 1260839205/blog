@@ -1,4 +1,4 @@
-package com.aguo.blog.user.config;
+package com.aguo.blog.config;
 
 import io.swagger.annotations.ApiOperation;
 import org.springframework.context.annotation.Bean;

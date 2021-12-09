@@ -6,6 +6,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 
 @MapperScan("com.aguo.blog.user.mapper")
+@MapperScan("com.aguo.blog.article.mapper")
 @SpringBootApplication
 public class BlogApplication {
 

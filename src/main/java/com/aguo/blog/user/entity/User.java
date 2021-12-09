@@ -27,5 +27,15 @@ public class User implements Serializable {
     @ApiModelProperty(value = "密码")
     private String password;
 
+    @ApiModelProperty(value = "作者")
+    private String author;
 
+    @ApiModelProperty(value = "微信号")
+    private String wechat;
+
+    @ApiModelProperty(value = "qq")
+    private String qq;
+
+    @ApiModelProperty(value = "github")
+    private String github;
 }

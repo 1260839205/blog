@@ -5,9 +5,16 @@ spring:
     username: root
     password: root
     type: com.alibaba.druid.pool.DruidDataSource
+  http:
+    encoding:
+      force: true
+      charset: UTF-8
+      enabled: true
 
 server:
   port: 8888
+  tomcat:
+    uri-encoding: utf-8
 
   #开启SQL语句打印
 mybatis-plus:

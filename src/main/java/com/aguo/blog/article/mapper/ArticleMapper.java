@@ -1,6 +1,6 @@
-package com.aguo.blog.user.mapper;
+package com.aguo.blog.article.mapper;
 
-import com.aguo.blog.user.entity.User;
+import com.aguo.blog.article.entity.Article;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import org.mapstruct.Mapper;
 import org.springframework.stereotype.Repository;
@@ -11,9 +11,9 @@ import org.springframework.stereotype.Repository;
  * </p>
  *
  * @author aguo
- * @since 2021-12-07
+ * @since 2021-12-08
  */
 @Repository
-public interface UserMapper extends BaseMapper<User> {
+public interface ArticleMapper extends BaseMapper<Article> {
 
 }
