@@ -4,6 +4,7 @@ import com.aguo.blog.response.R;
 import com.aguo.blog.response.annotation.BaseResponse;
 import com.aguo.blog.response.code.RCode;
 import com.aguo.blog.user.domainmodel.UserCmd;
+import com.aguo.blog.user.domainmodel.UserUpdatePwdCmd;
 import com.aguo.blog.user.service.IUserService;
 import com.aguo.blog.user.vo.UserVo;
 import io.swagger.annotations.Api;
@@ -42,6 +43,12 @@ public class UserController {
     @ApiOperation(value = "查询博主信息", notes = "直接查询")
     public UserVo getUser(){
         return userService.getUser();
+    }
+
+    @PutMapping
+    @ApiOperation(value = "修改密码",notes = "账号、旧密码、新密码")
+    public Boolean updateUser(@RequestBody @Validated UserUpdatePwdCmd cmd){
+        return userService.updatePassword(cmd);
     }
 
     @GetMapping("/test")

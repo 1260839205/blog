@@ -1,6 +1,7 @@
 package com.aguo.blog.user.service;
 
 import com.aguo.blog.user.domainmodel.UserCmd;
+import com.aguo.blog.user.domainmodel.UserUpdatePwdCmd;
 import com.aguo.blog.user.entity.User;
 import com.aguo.blog.user.vo.UserVo;
 import com.baomidou.mybatisplus.extension.service.IService;
@@ -26,4 +27,11 @@ public interface IUserService extends IService<User> {
      * @return 用户信息
      */
     UserVo getUser();
+
+    /**
+     * 修改密码
+     * @param cmd 入参修改数据
+     * @return 是否修改成功
+     */
+    Boolean updatePassword(UserUpdatePwdCmd cmd);
 }
