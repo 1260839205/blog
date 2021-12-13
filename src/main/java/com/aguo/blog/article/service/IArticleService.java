@@ -37,4 +37,11 @@ public interface IArticleService extends IService<Article> {
      * @return 查询结果
      */
     ArticleVo findArticle(ArticleDetailsCmd cmd);
+
+    /**
+     * 修改一篇文章
+     * @param cmd 入参，修改内容
+     * @return 是否修改成功
+     */
+    Boolean updateArticle(ArticleCmd cmd);
 }

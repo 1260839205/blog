@@ -39,7 +39,7 @@ public class ArticleController {
         return service.getArticle();
     }
 
-    @PutMapping
+    @PostMapping
     @ApiOperation(value = "保存一篇文章")
     public Boolean saveArticle(@RequestBody @Validated ArticleCmd cmd){
         return service.saveArticle(cmd);
@@ -50,6 +50,12 @@ public class ArticleController {
     public ArticleVo getArticle(@PathVariable(value = "id")String id, ArticleDetailsCmd cmd){
         cmd.setId(id);
         return service.findArticle(cmd);
+    }
+
+    @PutMapping
+    @ApiOperation(value = "修改一篇文章")
+    public Boolean updateArticle(@RequestBody @Validated ArticleCmd cmd){
+        return service.updateArticle(cmd);
     }
 
 }

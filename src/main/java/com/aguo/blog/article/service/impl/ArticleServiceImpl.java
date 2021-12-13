@@ -78,4 +78,23 @@ public class ArticleServiceImpl extends ServiceImpl<ArticleMapper,Article> imple
         BeanUtils.copyProperties(article,vo);
         return vo;
     }
+
+    @Override
+    public Boolean updateArticle(ArticleCmd cmd) {
+        ArticleCo articleCo = cmd.getArticleCo();
+        //判断是否存在id
+        if (articleCo == null || articleCo.getBId() == null){
+            throw new BaseException(RCode.ARTICLE_NOT_NULL_ERROR);
+        }
+        QueryWrapper<Article> queryWrapper = new QueryWrapper<>();
+        queryWrapper.eq("b_id",articleCo.getBId());
+        Article one = this.getOne(queryWrapper);
+        if (one == null){
+            throw new BaseException(RCode.ARTICLE_DETAILS_ERROR);
+        }
+        Article article = new Article();
+        BeanUtils.copyProperties(articleCo,article);
+        this.saveOrUpdate(article);
+        return Boolean.TRUE;
+    }
 }

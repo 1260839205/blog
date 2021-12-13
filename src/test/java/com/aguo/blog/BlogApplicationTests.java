@@ -5,7 +5,6 @@ import com.aguo.blog.article.mapper.ArticleMapper;
 import com.aguo.blog.user.entity.User;
 import com.aguo.blog.user.mapper.UserMapper;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
-import com.github.rjeschke.txtmark.Processor;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
@@ -45,8 +44,6 @@ class BlogApplicationTests {
 		QueryWrapper<Article> queryWrapper = new QueryWrapper<>();
 		queryWrapper.eq("b_id","c5772e56c6d0908799de550e6aab75e0");
 		Article article = mapper.selectOne(queryWrapper);
-		String process = Processor.process(article.getBContent());
-		System.out.println(process);
 	}
 
 }

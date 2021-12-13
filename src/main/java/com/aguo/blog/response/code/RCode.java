@@ -36,7 +36,9 @@ public enum RCode {
     /**
      * 文章查询错误，未查到此文章
      */
-    ARTICLE_DETAILS_ERROR(20002,"文章查询错误，未查到此文章");
+    ARTICLE_DETAILS_ERROR(20002,"文章查询错误，未查到此文章"),
+
+    ARTICLE_NOT_NULL_ERROR(20003, "修改内容不能为空");
 
     /**
      * 状态码

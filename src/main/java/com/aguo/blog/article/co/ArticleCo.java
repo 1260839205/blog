@@ -14,6 +14,9 @@ import java.time.LocalDateTime;
 public class ArticleCo implements Serializable {
     private static final long serialVersionUID = -7894486655469590761L;
 
+    @ApiModelProperty(value = "主键id")
+    private String bId;
+
     @ApiModelProperty(value = "文章名称")
     private String bName;
 

@@ -71,7 +71,6 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements IU
         //存在则修改密码
         UpdateWrapper<User> updateWrapper = new UpdateWrapper<>();
         updateWrapper.eq("username",one.getUsername()).set("password",userUpdatePwdCo.getNewPassword());
-        boolean update = this.update(updateWrapper);
-        return update;
+        return this.update(updateWrapper);
     }
 }
