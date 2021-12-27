@@ -6,6 +6,8 @@ import com.aguo.blog.user.entity.User;
 import com.aguo.blog.user.vo.UserVo;
 import com.baomidou.mybatisplus.extension.service.IService;
 
+import java.util.Map;
+
 /**
  * <p>
  *  服务类
@@ -20,7 +22,7 @@ public interface IUserService extends IService<User> {
      * 登录
      * @return 是否登录成功
      */
-    Boolean loginUser(UserCmd cmd);
+    String loginUser(UserCmd cmd);
 
     /**
      * 查询用户信息

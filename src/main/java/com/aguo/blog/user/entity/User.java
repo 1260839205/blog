@@ -8,7 +8,7 @@ import lombok.EqualsAndHashCode;
 
 /**
  * <p>
- * 
+ *
  * </p>
  *
  * @author aguo
@@ -38,4 +38,7 @@ public class User implements Serializable {
 
     @ApiModelProperty(value = "github")
     private String github;
+
+    @ApiModelProperty(value = "email")
+    private String email;
 }

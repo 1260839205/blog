@@ -28,10 +28,9 @@ public class TokenHandler implements HandlerInterceptor {
                 log.info("通过拦截器");
                 return true;
             }
-        }else {
-            throw new BaseException(RCode.LOGIN_TOKEN_ERROR);
         }
-        return false;
+
+        throw new BaseException(RCode.LOGIN_TOKEN_ERROR);
     }
 
 }

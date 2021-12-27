@@ -18,6 +18,8 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.BeanUtils;
 import org.springframework.stereotype.Service;
 
+import java.util.Map;
+
 /**
  * <p>
  *  服务实现类
@@ -31,7 +33,7 @@ import org.springframework.stereotype.Service;
 public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements IUserService {
 
     @Override
-    public Boolean loginUser(UserCmd cmd) {
+    public String loginUser(UserCmd cmd) {
         UserCo userCo = cmd.getUserCo();
         QueryWrapper<User> queryWrapper = new QueryWrapper<>();
         queryWrapper.eq("username",userCo.getUsername());
@@ -42,13 +44,13 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements IU
         }
         String token = JWTTokenUtil.token(user.getUsername(), user.getPassword());
         log.info("身份令牌："+token);
-        return true;
+        return token;
     }
 
     @Override
     public UserVo getUser() {
         QueryWrapper<User> queryWrapper = new QueryWrapper<>();
-        queryWrapper.select("author","wechat","qq","github").eq("id",1);
+        queryWrapper.select("author","wechat","qq","github","email").eq("id",1);
         User one = this.getOne(queryWrapper);
         UserVo vo = new UserVo();
         BeanUtils.copyProperties(one,vo);
@@ -71,6 +73,10 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements IU
         //存在则修改密码
         UpdateWrapper<User> updateWrapper = new UpdateWrapper<>();
         updateWrapper.eq("username",one.getUsername()).set("password",userUpdatePwdCo.getNewPassword());
-        return this.update(updateWrapper);
+        boolean update = this.update(updateWrapper);
+        if (update){
+            JWTTokenUtil.token(one.getUsername(),one.getPassword());
+        }
+        return update;
     }
 }

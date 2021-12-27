@@ -14,6 +14,9 @@ import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * <p>
@@ -35,8 +38,10 @@ public class UserController {
 
     @PostMapping("/login")
     @ApiOperation(value = "登录", notes = "账号&密码")
-    public Boolean loginUser(@RequestBody @Validated UserCmd cmd) {
-        return userService.loginUser(cmd);
+    public Map loginUser(@RequestBody @Validated UserCmd cmd) {
+        Map<String,String> map = new HashMap<>();
+        map.put("Authentication",userService.loginUser(cmd));
+        return map;
     }
 
     @GetMapping
@@ -54,6 +59,6 @@ public class UserController {
     @GetMapping("/test")
     @ApiOperation(value = "测试")
     public R  test() {
-        return new R<>(RCode.SUCCESS.getCode(), RCode.SUCCESS.getMsg(), "成功");
+        return  new R<>(RCode.SUCCESS.getCode(),RCode.SUCCESS.getMsg(),"成功");
     }
 }

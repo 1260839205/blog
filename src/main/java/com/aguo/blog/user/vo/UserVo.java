@@ -25,4 +25,7 @@ public class UserVo implements Serializable {
 
     @ApiModelProperty(value = "github")
     private String github;
+
+    @ApiModelProperty(value = "email")
+    private String email;
 }

@@ -107,6 +107,15 @@
 			<artifactId>java-jwt</artifactId>
 			<version>3.8.2</version>
 		</dependency>
+
+		<!--Redis依赖-->
+		<!-- https://mvnrepository.com/artifact/redis.clients/jedis -->
+		<dependency>
+			<groupId>redis.clients</groupId>
+			<artifactId>jedis</artifactId>
+			<version>3.7.0</version>
+		</dependency>
+
 	</dependencies>
 
 	<build>
