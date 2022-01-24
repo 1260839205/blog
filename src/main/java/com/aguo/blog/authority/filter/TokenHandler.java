@@ -29,7 +29,6 @@ public class TokenHandler implements HandlerInterceptor {
                 return true;
             }
         }
-
         throw new BaseException(RCode.LOGIN_TOKEN_ERROR);
     }
 

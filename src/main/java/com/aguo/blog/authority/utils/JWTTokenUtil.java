@@ -1,6 +1,5 @@
 package com.aguo.blog.authority.utils;
 
-import com.aguo.blog.BlogApplication;
 import com.auth0.jwt.JWT;
 import com.auth0.jwt.algorithms.Algorithm;
 import com.auth0.jwt.interfaces.DecodedJWT;
@@ -12,7 +11,6 @@ import org.springframework.stereotype.Component;
 import redis.clients.jedis.Jedis;
 
 import javax.annotation.PostConstruct;
-import javax.annotation.Resource;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.HashMap;
@@ -25,7 +23,9 @@ import java.util.Map;
 @Slf4j
 @Component
 public class JWTTokenUtil {
-    //设置过期时间
+    /**
+     * 设置过期时间
+     */
     private static final long EXPIRE_DATE=600000 * 6 * 24;
     //private static final long EXPIRE_DATE=60000;
     //token秘钥
@@ -85,12 +85,14 @@ public class JWTTokenUtil {
             JWTVerifier verifier = JWT.require(algorithm).build();
             DecodedJWT verify = verifier.verify(token);
 
-            if (!token.equals(jedis.get("username"))){
+            String username = verify.getClaim("username").asString();
+            String password = verify.getClaim("password").asString();
+            if (!token.equals(jedis.get(username))){
                 return false;
             }
             //判断是否即将过期，如果离过期还剩不到10分钟
             if ((verify.getExpiresAt().getTime() - 600000) < System.currentTimeMillis()){
-                token(verify.getClaim("username").asString(), verify.getClaim("password").asString());
+                token(username, password);
             }
             return true;
         }catch (Exception e){

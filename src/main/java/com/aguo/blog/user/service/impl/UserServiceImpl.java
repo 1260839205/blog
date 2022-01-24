@@ -4,8 +4,10 @@ import com.aguo.blog.authority.utils.JWTTokenUtil;
 import com.aguo.blog.response.code.RCode;
 import com.aguo.blog.response.error.BaseException;
 import com.aguo.blog.user.co.UserCo;
+import com.aguo.blog.user.co.UserRegisterCo;
 import com.aguo.blog.user.co.UserUpdatePwdCo;
 import com.aguo.blog.user.domainmodel.UserCmd;
+import com.aguo.blog.user.domainmodel.UserRegisterCmd;
 import com.aguo.blog.user.domainmodel.UserUpdatePwdCmd;
 import com.aguo.blog.user.entity.User;
 import com.aguo.blog.user.mapper.UserMapper;
@@ -17,8 +19,6 @@ import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.BeanUtils;
 import org.springframework.stereotype.Service;
-
-import java.util.Map;
 
 /**
  * <p>
@@ -78,5 +78,13 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements IU
             JWTTokenUtil.token(one.getUsername(),one.getPassword());
         }
         return update;
+    }
+
+    @Override
+    public Boolean register(UserRegisterCmd cmd) {
+        UserRegisterCo co = cmd.getCo();
+        User user = new User();
+        BeanUtils.copyProperties(co, user);
+        return this.save(user);
     }
 }

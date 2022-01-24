@@ -36,6 +36,7 @@ public class ArticleController {
     @GetMapping
     @ApiOperation(value = "查询所有文章")
     public List<ArticleVo> getArticles(){
+        //ClassLoader
         return service.getArticle();
     }
 

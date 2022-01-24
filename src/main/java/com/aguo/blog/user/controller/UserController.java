@@ -4,6 +4,7 @@ import com.aguo.blog.response.R;
 import com.aguo.blog.response.annotation.BaseResponse;
 import com.aguo.blog.response.code.RCode;
 import com.aguo.blog.user.domainmodel.UserCmd;
+import com.aguo.blog.user.domainmodel.UserRegisterCmd;
 import com.aguo.blog.user.domainmodel.UserUpdatePwdCmd;
 import com.aguo.blog.user.service.IUserService;
 import com.aguo.blog.user.vo.UserVo;
@@ -15,6 +16,7 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -38,9 +40,10 @@ public class UserController {
 
     @PostMapping("/login")
     @ApiOperation(value = "登录", notes = "账号&密码")
-    public Map loginUser(@RequestBody @Validated UserCmd cmd) {
-        Map<String,String> map = new HashMap<>();
-        map.put("Authentication",userService.loginUser(cmd));
+    public Map loginUser(@RequestBody @Validated UserCmd cmd , HttpServletResponse response,HttpServletRequest request) {
+        Map<String,String> map = new HashMap<>(8);
+        String token = userService.loginUser(cmd);
+        map.put("Authentication",token);
         return map;
     }
 
@@ -56,9 +59,21 @@ public class UserController {
         return userService.updatePassword(cmd);
     }
 
+    @PostMapping("/register")
+    @ApiOperation(value = "注册", notes = "注册")
+    public Boolean register(@RequestBody @Validated UserRegisterCmd cmd){
+
+
+        return userService.register(cmd);
+    }
+
     @GetMapping("/test")
     @ApiOperation(value = "测试")
-    public R  test() {
+    public R  test(HttpServletRequest request) {
+        System.out.println(request.getRemoteAddr());
+        System.out.println(request.getRemoteHost());
+        System.out.println(request.getRemoteUser());
+        System.out.println(request.getRemotePort());
         return  new R<>(RCode.SUCCESS.getCode(),RCode.SUCCESS.getMsg(),"成功");
     }
 }

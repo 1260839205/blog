@@ -27,7 +27,9 @@ public class InterceptorConfig extends WebMvcConfigurationSupport {
         List<String> excludePath = new ArrayList<>();
         String login = "/user/login";
         String[] swagger = {"/doc.html","/swagger-resources/**","/v2/**","/image/**","/webjars/**"};
+        String register = "/user/register";
         excludePath.add(login);
+        excludePath.add(register);
         registry.addInterceptor(tokenHandler).excludePathPatterns(excludePath).excludePathPatterns(swagger);
     }
 
@@ -41,4 +43,6 @@ public class InterceptorConfig extends WebMvcConfigurationSupport {
                 "classpath:/META-INF/resources/webjars/");
         super.addResourceHandlers(registry);
     }
+
+
 }
