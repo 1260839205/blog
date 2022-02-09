@@ -30,6 +30,10 @@ public enum RCode {
      */
     USER_UPDATE_ERROR(10003,"修改账号密码失败，旧密码错误"),
     /**
+     * 注册失败，请联系管理员
+     */
+    USER_REGISTER_ERROR(10004,"注册失败，请联系管理员"),
+    /**
      * 文章不完整，请补充完整
      */
     ARTICLE_NOT_ERROR(20001,"文章不完整,请补充完整"),
@@ -37,8 +41,11 @@ public enum RCode {
      * 文章查询错误，未查到此文章
      */
     ARTICLE_DETAILS_ERROR(20002,"文章查询错误，未查到此文章"),
-
+    /**
+     * 修改内容不能为空
+     */
     ARTICLE_NOT_NULL_ERROR(20003, "修改内容不能为空");
+
 
     /**
      * 状态码

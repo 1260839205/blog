@@ -17,6 +17,7 @@ import org.springframework.stereotype.Service;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 /**
  * <p>
@@ -71,7 +72,7 @@ public class ArticleServiceImpl extends ServiceImpl<ArticleMapper,Article> imple
         QueryWrapper<Article> queryWrapper = new QueryWrapper<>();
         queryWrapper.eq("b_id",cmd.getId());
         Article article = this.getOne(queryWrapper);
-        if (article == null){
+        if (Objects.isNull(article)){
             throw new BaseException(RCode.ARTICLE_DETAILS_ERROR);
         }
         ArticleVo vo = new ArticleVo();

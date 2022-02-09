@@ -28,6 +28,16 @@ public class InterceptorConfig extends WebMvcConfigurationSupport {
         String login = "/user/login";
         String[] swagger = {"/doc.html","/swagger-resources/**","/v2/**","/image/**","/webjars/**"};
         String register = "/user/register";
+        String css = "/static/css/**";
+        String js = "/static/js/**";
+        String img = "/static/img/**";
+        String ioc = "/static/**";
+        String index = "/index.html";
+        excludePath.add(css);
+        excludePath.add(js);
+        excludePath.add(img);
+        excludePath.add(ioc);
+        excludePath.add(index);
         excludePath.add(login);
         excludePath.add(register);
         registry.addInterceptor(tokenHandler).excludePathPatterns(excludePath).excludePathPatterns(swagger);

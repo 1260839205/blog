@@ -40,7 +40,7 @@ public class UserController {
 
     @PostMapping("/login")
     @ApiOperation(value = "登录", notes = "账号&密码")
-    public Map loginUser(@RequestBody @Validated UserCmd cmd , HttpServletResponse response,HttpServletRequest request) {
+    public Map loginUser(@RequestBody @Validated UserCmd cmd) {
         Map<String,String> map = new HashMap<>(8);
         String token = userService.loginUser(cmd);
         map.put("Authentication",token);
@@ -62,8 +62,6 @@ public class UserController {
     @PostMapping("/register")
     @ApiOperation(value = "注册", notes = "注册")
     public Boolean register(@RequestBody @Validated UserRegisterCmd cmd){
-
-
         return userService.register(cmd);
     }
 

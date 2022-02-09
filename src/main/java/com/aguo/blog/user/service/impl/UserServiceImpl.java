@@ -20,6 +20,8 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.BeanUtils;
 import org.springframework.stereotype.Service;
 
+import java.util.Objects;
+
 /**
  * <p>
  *  服务实现类
@@ -82,6 +84,9 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements IU
 
     @Override
     public Boolean register(UserRegisterCmd cmd) {
+        if (!Objects.isNull(getUser())){
+            throw new BaseException(RCode.USER_REGISTER_ERROR);
+        }
         UserRegisterCo co = cmd.getCo();
         User user = new User();
         BeanUtils.copyProperties(co, user);
